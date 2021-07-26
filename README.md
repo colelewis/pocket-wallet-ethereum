@@ -1,1 +1,3 @@
-#pocket-wallet-ethereum
+# pocket-wallet-ethereum
+
+A basic, hardware-deterministic Ethereum wallet written in Python.

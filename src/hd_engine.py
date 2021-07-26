@@ -110,20 +110,3 @@ def mnemonic_to_private_key(mnemonic, passphrase=""):
     for i in derivation_path:
         private_key, chain_code = derive_bip32childkey(private_key, chain_code, i)
     return private_key
-
-
-
-#tests
-
-mnemonic_root = Mnemonic("english")
-mnemonic = mnemonic_root.generate(strength=128) #128 = 12 words, 256 = 24 words
-
-private_key = mnemonic_to_private_key(mnemonic, "")
-public_key = PublicKey(private_key)
-
-
-
-
-print(f'privkey: {binascii.hexlify(private_key).decode("utf-8")}')
-print(f'pubkey:  {binascii.hexlify(bytes(public_key)).decode("utf-8")}')
-print(f'address: {public_key.address()}')
