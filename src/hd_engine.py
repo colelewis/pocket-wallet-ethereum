@@ -1,28 +1,4 @@
-'''
-MIT License
-
-Copyright (c) 2018 Luis Teixeira
-Copyright (c) 2019 Niklas Baumstark
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-'''
-import binascii, hashlib, hmac, struct, sys
+import hashlib, hmac, struct, sys
 from mnemonic import Mnemonic 
 from ecdsa.curves import SECP256k1
 from eth_utils import to_checksum_address, keccak as eth_utils_keccak
@@ -102,7 +78,7 @@ def mnemonic_to_private_key(mnemonic, str_derivation_path, passphrase=""):
         private_key, chain_code = derive_bip32childkey(private_key, chain_code, i)
     return private_key
 
-def mnemonic_to_private_key(mnemonic, passphrase=""):
+def mnemonic_to_private_key(mnemonic, passphrase=""): #overloaded to assume standard derivation path
     derivation_path = parse_derivation_path(f'{ETH_DERIVATION_PATH}/0')
     bip39seed = mnemonic_to_bip39seed(mnemonic, passphrase)
     master_private_key, master_chain_code = bip39seed_to_bip32masternode(bip39seed)
@@ -110,3 +86,8 @@ def mnemonic_to_private_key(mnemonic, passphrase=""):
     for i in derivation_path:
         private_key, chain_code = derive_bip32childkey(private_key, chain_code, i)
     return private_key
+
+def generate_mnemonic(strength=256, language="english"): #set to default of 24 words, 128 = 12 words
+    mnemonic_root = Mnemonic(language)
+    return(mnemonic_root.generate(strength))
+
