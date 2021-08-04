@@ -2,11 +2,12 @@ from web3 import Web3
 from cryptoaddress import EthereumAddress
 from web3.auto import w3
 from web3.eth import Eth
-from hd_engine import *
+#from src import hd_engine
 import eth_keyfile, sys, os, json
 
-#web3 = Web3(Web3.WebsocketProvider('ws://192.168.0.142:3334'))
-web3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+web3 = Web3(Web3.WebsocketProvider('ws://192.168.0.142:3334'))
+#web3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545')) #when ganache is active
+
 DEFAULT_FOLDER_PATH = os.path.expanduser("~/.pocket-eth")
 
 
@@ -23,6 +24,9 @@ def add_transaction_to_history(): #to be done with making transactions
 def create_wallet(wallet_name):
     #stores the wallet directory with name to the user's default home directory
     os.makedirs(os.path.expanduser(DEFAULT_FOLDER_PATH + '/wallets/{}'.format(wallet_name)), exist_ok=True)
+
+def any_wallets():
+    return os.path.isdir(DEFAULT_FOLDER_PATH)
     
 def write_private_key_to_wallet(private_key, wallet_name, passphrase):
     #path = os.path.expanduser(DEFAULT_FOLDER_PATH + '/wallets/{}'.format(wallet_name) + '/keystore.json')
