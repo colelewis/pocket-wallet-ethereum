@@ -1,6 +1,7 @@
 import utility
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
+from tkinter.filedialog import askdirectory
 
 class GUI(tk.Tk):
     def __init__(self):
@@ -25,14 +26,18 @@ class StartTab(ttk.Frame):
     def __init__(self, container):
         super().__init__()
 
-        #self.labelA = ttk.Label(self, text = "Start!")
-        #self.labelA.grid(column=1, row=1)
-        if (utility.any_wallets() == True):
+        # self.labelA = ttk.Label(self, text = "Start!")
+        # self.labelA.grid(column=1, row=1)
+        if (utility.any_wallets() == True or True ): #or True condition used for testing
             #choose wallet from directory
-            pass
+            path = askdirectory(title="Choose wallet directory...")
+            print(path)
+            #button = ttk.Button(self, text="Select wallet directory", command=select_file).pack()
         else:
             #create wallet
             pass
+
+        #create wallet   
 
 class SendTab(ttk.Frame):
     def __init__(self, container):
