@@ -7,7 +7,7 @@ class GUI(tk.Tk):
         super().__init__()
 
         self.title("pocket-eth-wallet")
-        self.geometry('400x400')
+        self.geometry('300x300')
 
         self.notebook = ttk.Notebook(self)
 
@@ -25,25 +25,23 @@ class StartTab(ttk.Frame):
     def __init__(self, container):
         super().__init__()
 
-        self.labelA = ttk.Label(self, text = "Start!")
-        self.labelA.grid(column=1, row=1)
-
-class Frame1FrameA(ttk.Frame):
-    def __init__(self, container):
-        super().__init__(container)
-
-        self.LabelA = ttk.Label(self, text="LabelA in FrameA in tab Frame1")
-        self.LabelA.grid(column=0, row=0)
-
-        self.LabelB = ttk.Label(self, text="LabelB in FrameA in tab Frame1")
-        self.LabelB.grid(column=1, row=0)
+        #self.labelA = ttk.Label(self, text = "Start!")
+        #self.labelA.grid(column=1, row=1)
+        if (utility.any_wallets() == True):
+            #choose wallet from directory
+            pass
+        else:
+            #create wallet
+            pass
 
 class SendTab(ttk.Frame):
     def __init__(self, container):
         super().__init__()
 
-        self.labelB = ttk.Label(self, text = "Send!")
-        self.labelB.grid(column=1, row=1)
+        # self.labelB = ttk.Label(self, text = "Send!")
+        # self.labelB.grid(column=1, row=1)
+        # send transactions
+        # choose address with according balance
 
 class ReceiveTab(ttk.Frame):
     def __init__(self, container):

@@ -2,7 +2,6 @@ import hashlib, hmac, struct, sys
 from mnemonic import Mnemonic 
 from ecdsa.curves import SECP256k1
 from eth_utils import to_checksum_address, keccak as eth_utils_keccak
-import mnemonic
 
 BIP39_PBKDF2_ROUNDS = 2048
 BIP39_SALT_MODIFIER = "mnemonic"
